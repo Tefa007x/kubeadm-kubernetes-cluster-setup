@@ -1,0 +1,32 @@
+# Terraform Files & State 
+
+.terraform/
+.terraform.lock.hcl
+*.tfstate
+*.tfstate.*
+crash.log
+crash.*.log
+*.tfvars
+*.tfplan
+*.tfplan.binary
+
+# Exclude private SSH keys or credentials if stored locally in the repo
+
+*.pem
+*.key
+id_rsa
+id_rsa.pub
+
+# Ansible Files & Caches
+
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+
+# Operator System & IDE Files
+
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
