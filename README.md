@@ -15,7 +15,7 @@ With a single command, the entire cluster is fully resilient, with isolated, non
 ## 🏗️ AWS Kubernetes Cluster Architecture
 To align with production readiness and lab reliability, this cluster uses a 2D architectural blueprint that matches the exact resources deployed by Terraform:
 
-![AWS Kubernetes Cluster Architecture](/projects/kubeadm-setup/docs/images/Kubeadm_Cluster_Architecture.jpg)
+![AWS Kubernetes Cluster Architecture](/docs/images/Kubeadm_Cluster_Architecture.jpg)
 
 ---
 
@@ -104,12 +104,12 @@ After applying Terraform, verify your AWS console to ensure the resources were s
 ### Running EC2 Instances (`c7i-flex.large`):
 Verify that the `k8s-master`, `k8s-worker-1`, and `k8s-worker-2` instances are up and `Running` in AWS.
 
-![AWS EC2 Instances Running](/projects/kubeadm-setup/docs/images/EC2_Instances.png) 
+![AWS EC2 Instances Running](/docs/images/EC2_Instances.png) 
 
 ### Deployed VPC & Subnet Resources:
 Ensure the custom VPC `k8s-kubeadm-vpc` is created with its corresponding public and private subnets.
 
-![AWS Deployed VPC](/projects/kubeadm-setup/docs/images/VPC.png) 
+![AWS Deployed VPC](/docs/images/VPC.png) 
 
 ---
 
@@ -122,28 +122,28 @@ Confirm that all 3 nodes have successfully joined the cluster and transitioned i
 ```bash
 kubectl get nodes -o wide
 ```
-![kubectl get nodes](/projects/kubeadm-setup/docs/images/Nodes_Validation.png) 
+![kubectl get nodes](/docs/images/Nodes_Validation.png) 
 
 ### 2. Validate Cilium Networking
 Check the deployment health of Cilium daemonsets and confirm eBPF connectivity is running normally:
 ```bash
 cilium status --wait 
 ```
-![cilium status](/projects/kubeadm-setup/docs/images/Cilium_Status.png)
+![cilium status](/docs/images/Cilium_Status.png)
 
 ### 3. Valitade System Pods
 Ensure that all `kube-system` pods are healthy and running normally 
 ```bash
 kubectl get pods -n kube-system -o wide
 ```
-![kube-system](/projects/kubeadm-setup/docs/images/Kube_System.png)
+![kube-system](/docs/images/Kube_System.png)
 
 ### 4. Check Network Interface Connection (Ping)
 Validate network-to-network reachability and connectivity across the workers using ansible connectivity pings:
 ```bash
 ansible all -m ping
 ```
-![ansible ping](/projects/kubeadm-setup/docs/images/Ansible_ping.png)
+![ansible ping](/docs/images/Ansible_ping.png)
 
 ### 5. Test Kubelet Host Routing
 Check `ping` between Master and Workers to ensure connectivity (From `master` node):
@@ -151,7 +151,7 @@ Check `ping` between Master and Workers to ensure connectivity (From `master` no
 ping k8s-worker-1
 ping k8s-worker-2
 ```
-![workers ping](/projects/kubeadm-setup/docs/images/Workers_Ping.png)
+![workers ping](/docs/images/Workers_Ping.png)
 
 ---
 
